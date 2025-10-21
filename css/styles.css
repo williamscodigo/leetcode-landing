@@ -1,27 +1,20 @@
 :root {
-  --bg-color: #fff;
-  --text-color: #1a1a1a;
-  --accent-color: #ffa116;
+  --bg-white: #fff;
+  --bg-black: #1a1a1a;
   --text-muted: #8b8b8b;
   --shadow-color: rgba(0,0,0,0.1);
 }
 
 body {
-  background: var(--bg-color);
+  background: var(--bg-white);
   font-family: 'Inter', 'Poppins', sans-serif;
-   color: var(--text-color);
+  color: var(--text-muted);
 }
 
 /* ===== HEADER / NAVIGATION ===== */
 header {
-  background-color: #1a1a1a; /* same as hero for seamless blend */
-  color: #fff;
+  background-color: var(--bg-black); /* same as hero for seamless blend */
   padding: 1rem 0;
-  position: fixed; /* keep it visible at top */
-  top: 0;
-  width: 100%;
-  z-index: 1000;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 header .space-between {
@@ -30,15 +23,14 @@ header .space-between {
   justify-content: space-between;
 }
 
-/* LeetCode logo text */
 header h1 {
+  font-family: monospace;
   font-size: 1.6rem;
   font-weight: 700;
-  color: #ffa116; /* LeetCode accent color */
   letter-spacing: 0.5px;
+  color: #fff;
 }
 
-/* Navigation */
 nav ul {
   list-style: none;
   display: flex;
@@ -46,55 +38,37 @@ nav ul {
   gap: 2rem;
 }
 
-nav ul li a {
+nav a {
   color: #e0e0e0;
   text-decoration: none;
   font-size: 1rem;
-  transition: color 0.3s ease;
-}
-
-nav ul li a:hover {
-  color: #ffa116; /* accent hover */
-}
-
-/* Sign In styled slightly different */
-nav ul li:last-child a {
-  padding: 6px 14px;
-  border: 1px solid #ffa116;
-  border-radius: 4px;
-  color: #ffa116;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px; /* makes it fully rounded */
   transition: all 0.3s ease;
 }
 
-nav ul li:last-child a:hover {
+nav li:first-child a {
+  color: #ffa116;
+}
+
+nav a:hover {
+  background-color: white;
+  color: black;
+}
+
+nav li:first-child a:hover {
   background-color: #ffa116;
-  color: #1a1a1a;
+  color: black;
 }
 
-/* ===== RESPONSIVE NAV ===== */
-@media (max-width: 768px) {
-  nav ul {
-    gap: 1rem;
-  }
-
-  header h1 {
-    font-size: 1.4rem;
-  }
-}
-
-@media (max-width: 600px) {
-  nav ul {
-    display: none; /* hide menu initially (mobile toggle can be added later) */
-  }
-}
 
 
 /* ===== HERO SECTION (Dark Top) ===== */
 #hero {
   position: relative;
   background-color: #1a1a1a; /* dark hero background */
-  color: #fff;
-  padding: 120px 0 160px; /* extra bottom padding to make room for the diagonal */
+  padding: 120px 0 200px; /* extra bottom padding to make room for the diagonal */
   overflow: hidden;
 }
 
@@ -103,17 +77,58 @@ nav ul li:last-child a:hover {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   gap: 2rem;
+}
+
+/* leetcode like graph image made with icons using css grid */
+#hero .hero-image {
+  /* create graph image from icons by using flexbox or grid - grid might be better for this layout*/
+  /* icons to use stop.svg (square make different colors), list-bullet.svg (rotate 180deg), chart-pie.svg, and bars-3-center-left.svg  */
 }
 
 #hero .hero-text {
   max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 #hero h2 {
   font-size: 2.5rem;
-  margin-bottom: 1rem;
+  color: #fff;
+}
+
+#hero .hero-text p {
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+#create-account-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem; /* space between text and icon */
+  color: #e0e0e0;
+  background-color: #1d9b91;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 9999px; /* makes it fully rounded */
+  transition: all 0.3s ease;
+}
+
+#create-account-btn:hover {
+  background-color: #0f746b;
+}
+
+
+#create-account-btn img {
+  width: 1rem;   /* 👈 resize the icon here */
+  height: 1rem;  /* keep proportions consistent */
+  filter: invert(1); /* change black color icon to white */
 }
 
 /* angled divider like leetcode */
@@ -123,11 +138,12 @@ nav ul li:last-child a:hover {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 120px;
+  height: 200px;
   background-color: #fff; /* next section's color */
-  transform: skewy(-5deg); /* creates the diagonal */
-  transform-origin: top right;
+  transform: skewY(8deg); /* creates the diagonal */
+  transform-origin: top left;
 }
+
 
 /* ===== NEXT SECTION (White Background) ===== */
 #row-exploring {
@@ -137,40 +153,14 @@ nav ul li:last-child a:hover {
   color: #333;
 }
 
-/* Optional: make smooth transition visually */
-/*
-#row-exploring::before {
-  content: "";
-  position: absolute;
-  top: -2px;
-  left: 0;
-  width: 100%;
-  height: 5px;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), transparent);
-}
-*/
-
 /* ===== GENERAL STYLING ===== */
-.column {
+
+.columns {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  text-align: center;
-}
-
-button {
-  background-color: #ffa116;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  padding: 10px 20px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-button:hover {
-  background-color: #ff8c00;
+  justify-content: space-between;
+  gap: 2rem;
 }
 
 
@@ -213,7 +203,9 @@ section {
   padding: 4rem 0;
 }
 
-/* ===== RESPONSIVE ===== */
+
+
+/* ===== RESPONSIVE HERO & SLANTED LINE ===== */
 @media (max-width: 768px) {
   #hero .hero-content {
     flex-direction: column;
@@ -222,6 +214,23 @@ section {
 
   #hero::after {
     height: 80px; /* reduce slope depth on mobile */
-    transform: skewY(-4deg);
+    transform: skewY(4deg);
+  }
+}
+
+/* ===== RESPONSIVE NAV ===== */
+@media (max-width: 768px) {
+  nav ul {
+    gap: 1rem;
+  }
+
+  header h1 {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 600px) {
+  nav ul {
+    display: none; /* hide menu initially (mobile toggle can be added later) */
   }
 }
