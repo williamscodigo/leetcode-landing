@@ -1,0 +1,227 @@
+:root {
+  --bg-color: #fff;
+  --text-color: #1a1a1a;
+  --accent-color: #ffa116;
+  --text-muted: #8b8b8b;
+  --shadow-color: rgba(0,0,0,0.1);
+}
+
+body {
+  background: var(--bg-color);
+  font-family: 'Inter', 'Poppins', sans-serif;
+   color: var(--text-color);
+}
+
+/* ===== HEADER / NAVIGATION ===== */
+header {
+  background-color: #1a1a1a; /* same as hero for seamless blend */
+  color: #fff;
+  padding: 1rem 0;
+  position: fixed; /* keep it visible at top */
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+header .space-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* LeetCode logo text */
+header h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #ffa116; /* LeetCode accent color */
+  letter-spacing: 0.5px;
+}
+
+/* Navigation */
+nav ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+nav ul li a {
+  color: #e0e0e0;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: #ffa116; /* accent hover */
+}
+
+/* Sign In styled slightly different */
+nav ul li:last-child a {
+  padding: 6px 14px;
+  border: 1px solid #ffa116;
+  border-radius: 4px;
+  color: #ffa116;
+  transition: all 0.3s ease;
+}
+
+nav ul li:last-child a:hover {
+  background-color: #ffa116;
+  color: #1a1a1a;
+}
+
+/* ===== RESPONSIVE NAV ===== */
+@media (max-width: 768px) {
+  nav ul {
+    gap: 1rem;
+  }
+
+  header h1 {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 600px) {
+  nav ul {
+    display: none; /* hide menu initially (mobile toggle can be added later) */
+  }
+}
+
+
+/* ===== HERO SECTION (Dark Top) ===== */
+#hero {
+  position: relative;
+  background-color: #1a1a1a; /* dark hero background */
+  color: #fff;
+  padding: 120px 0 160px; /* extra bottom padding to make room for the diagonal */
+  overflow: hidden;
+}
+
+/* Make sure hero content stays centered and readable */
+#hero .hero-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+#hero .hero-text {
+  max-width: 500px;
+}
+
+#hero h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+/* angled divider like leetcode */
+#hero::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  background-color: #fff; /* next section's color */
+  transform: skewy(-5deg); /* creates the diagonal */
+  transform-origin: top right;
+}
+
+/* ===== NEXT SECTION (White Background) ===== */
+#row-exploring {
+  position: relative;
+  background-color: #fff;
+  padding: 120px 0;
+  color: #333;
+}
+
+/* Optional: make smooth transition visually */
+/*
+#row-exploring::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), transparent);
+}
+*/
+
+/* ===== GENERAL STYLING ===== */
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+button {
+  background-color: #ffa116;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background-color: #ff8c00;
+}
+
+
+/* floating card animation */
+.card {
+  background: #fff;
+  box-shadow: 0 4px 10px var(--shadow-color);
+  border-radius: 1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* continues floating */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
+
+/* add a .float to specific card */
+.card.float {
+  animation: float 4s ease-in-out infinite;
+}
+
+
+
+
+/* ===== UTILITIES ===== */
+.container {
+    width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+section {
+  padding: 4rem 0;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  #hero .hero-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  #hero::after {
+    height: 80px; /* reduce slope depth on mobile */
+    transform: skewY(-4deg);
+  }
+}
